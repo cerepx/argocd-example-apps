@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: corelab/gb-frontend-arm64
-  tag: v6
+  repository: gcr.io/google-samples/gb-frontend
+  tag: v5
   pullPolicy: IfNotPresent
 
 containerPort: 80
