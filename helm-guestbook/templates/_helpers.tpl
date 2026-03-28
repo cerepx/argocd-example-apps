@@ -30,3 +30,13 @@ Create chart name and version as used by the chart label.
 {{- define "helm-guestbook.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
+
+{{/*
+Common labels
+*/}}
+{{- define "helm-guestbook.labels" -}}
+helm.sh/chart: {{ include "helm-guestbook.chart" . }}
+app.kubernetes.io/name: {{ include "helm-guestbook.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end -}}
