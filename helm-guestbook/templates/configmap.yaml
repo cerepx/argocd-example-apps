@@ -3,8 +3,8 @@ kind: ConfigMap
 metadata:
   name: {{ include "helm-guestbook.fullname" . }}
   labels:
-	{{- include "helm-guestbook.labels" . | nindent 4 }}
+    {{- include "helm-guestbook.labels" . | nindent 4 }}
 data:
   config.conf: |
-	# Configuration file
-	key: value
+    # Configuration file
+    key: value
