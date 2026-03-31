@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+    name: {{ include "helm-guestbook.fullname" . }}-db-migration
+    labels:
+        {{- include "helm-guestbook.labels" . | nindent 4 }}
+    annotations:
+        argocd.argoproj.io/hook: PreSync
+        argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
+spec:
+    backoffLimit: 2
+    template:
+        metadata:
+            labels:
+                {{- include "helm-guestbook.labels" . | nindent 8 }}
+        spec:
+            restartPolicy: Never
+            containers:
+            - name: db-migration
+                image: busybox
+                command:
+                - /bin/sh
+                - -c
+                - |
+                    # Add your migration commands here
+                    echo "Running database migrations...; sleep 10; echo 'Migrations completed!'"
