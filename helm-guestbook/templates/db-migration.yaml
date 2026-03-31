@@ -17,10 +17,8 @@ spec:
             restartPolicy: Never
             containers:
             - name: db-migration
-                image: busybox
-                command:
-                - /bin/sh
-                - -c
-                - |
-                    # Add your migration commands here
-                    echo "Running database migrations...; sleep 10; echo 'Migrations completed!'"
+              image: busybox
+              command:
+              - /bin/sh
+              - -c
+              - "echo \"Running database migrations...\"; sleep 10; echo \"Migrations completed!\""
